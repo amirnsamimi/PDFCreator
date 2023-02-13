@@ -1,0 +1,37 @@
+@font-face {
+  font-family: op-reg;
+  src: url("./font/Opificio_light.ttf");
+
+}
+@font-face {
+  font-family: op-bold;
+  src: url("./font/Opificio_Bold.ttf");
+
+}
+
+.gridLeft{
+
+ 
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding:20%;
+
+}
+
+.gridRight{
+
+  background: rgba($color: #000000, $alpha: 1.0);
+  color: white;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items:self-start;
+}
+
+*{
+  padding: 0;
+  font-family: op-reg;
+  
+
+}
