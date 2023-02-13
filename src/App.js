@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+
 import './App.scss';
-import DocComp from './docComp';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import Doc from './docComp';
+import { Font, PDFDownloadLink } from '@react-pdf/renderer';
 import { useEffect, useState } from 'react';
 
-  
+
 
  function App() {
 
@@ -22,12 +22,12 @@ import { useEffect, useState } from 'react';
 
   return (
     
-    <PDFDownloadLink document={<DocComp />} fileName="hello">
+//     <PDFDownloadLink document={<Doc />} fileName="hello">
 
-<button  id="download"> </button>
-<DocComp />
-      
-</PDFDownloadLink>
+// <button  id="download"> dl </button>
+
+<Doc />
+// </PDFDownloadLink>
    
   );
   
