@@ -6,18 +6,20 @@ import { Grid } from '@mui/material';
 import { fontFamily, style } from '@mui/system';
 import OpReg from './font/Opificio_light.ttf';
 import OpBold from './font/Opificio_Bold.ttf';
+import Yekan from './font/IRANYekanX-ExtraBold.ttf';
 import App from './App';
 
 
 Font.register({ family: 'opreg', src: OpReg });
 Font.register({ family: 'opbold', src: OpBold });
-
+Font.register({ family: 'Yb', src: Yekan });
 
  const Doc = (props) => {
 
   const styles = StyleSheet.create({
     body: { position:"relative" ,fontFamily: 'opreg', fontSize:"12",  },
     title: {  fontFamily: 'opbold', fontSize:"16", marginTop:50, marginBottom:50 },
+    name: {  fontFamily: 'Yb', fontSize:"16", marginTop:50, marginBottom:50 },
     text: { color: 'white', textAlign: 'center'},
     paragraph: { color: 'white', textAlign: 'center', margin:2.5, letterSpacing:2},
     image: { position:"absolute", width:"500", textAlign:"left" },
@@ -48,9 +50,9 @@ Font.register({ family: 'opbold', src: OpBold });
             </Text>
             <br />
   <Text  
-  style={styles.title}
+  style={styles.name}
   key={props.name+props.index}
-  > {props.name} {props.lastName} </Text>
+  > {props.lastName} {props.name}</Text>
     <Text style={styles.paragraph}>
 
 We are inviting you to join our 

@@ -1,7 +1,7 @@
 
 import './App.scss';
 import Doc from './docComp';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import { Fragment, useEffect, useState } from 'react';
 import Customer from './customer.data';
 import { click } from '@testing-library/user-event/dist/click';
@@ -11,40 +11,44 @@ import { click } from '@testing-library/user-event/dist/click';
  function App() {
 
 
-  var className1;
+var indexT;
 
-  function clickingFunc(){
+function save(){
 
-  document.querySelector(`#${className1}`).click();
-
-
-  document.querySelector(`#${className1}`).window.alert("nriuh.jkl");
-
+  for(let i =  0; i <= indexT; i++ ){
+    document.querySelector(`#button${i}`).click();
+    console.log("hi")
   }
-  clickingFunc()
+}
+
+
+
   return (
     
 <Fragment>
 
     { Customer.map((data,index) => {
 
-      className1 = data.name+index;
-
-    
-
+      indexT = index;
+     
+      
       return(
 
+   <PDFDownloadLink  width="100%" height="500px" key={`${data.name+index}`}  className='button'  document={  <Doc  name={data.name} lastName={data.lastName} index={index} />} fileName={`${data.name}_${data.lastName}`}>
+ 
+  <button id={`button${index}`}>  D L   </button>
 
-   <PDFDownloadLink  document={  <Doc  name={data.name} lastName={data.lastName} index={index} />} fileName="hello">
-
-      <button id={`${data.name+index}`} className='hi' > hello </button>
-        { className1 === undefined || null ? console.log(className1) : clickingFunc()}
    </PDFDownloadLink>
    
- )
+
+
+)
+
+ 
 } )}
-  
-   
+
+<button onClick={save} >asdasda</button>
+
  </Fragment>
   );
   
