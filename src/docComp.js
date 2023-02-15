@@ -1,100 +1,94 @@
-import { Stack  } from '@mui/material';
-import { Page, Text, View, Document, StyleSheet, PDFRenderer, PDFViewer, Image } from '@react-pdf/renderer';
-import { Fragment } from 'react';
+import { Page, Text, Document, Image, StyleSheet, PDFViewer, View, Link } from '@react-pdf/renderer';
 import Customer from './customer.data';
-import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
-import Logo from "./invitation.jpg";
 import { Font } from '@react-pdf/renderer'
+import  logo  from "./invitation.jpg"
+import { Grid } from '@mui/material';
+import { fontFamily, style } from '@mui/system';
+import OpReg from './font/Opificio_light.ttf';
+import OpBold from './font/Opificio_Bold.ttf';
+import App from './App';
 
- const DocComp = () =>{
+
+Font.register({ family: 'opreg', src: OpReg });
+Font.register({ family: 'opbold', src: OpBold });
 
 
+ const Doc = (props) => {
 
-  // Register font
-  Font.register({ family: 'op-bold', src:  "./font/Opificio_bold.ttf" });
-  Font.register({ family: 'op-bold', src:  "./font/Opificio_bold.ttf" });
-
+  const styles = StyleSheet.create({
+    body: { position:"relative" ,fontFamily: 'opreg', fontSize:"12",  },
+    title: {  fontFamily: 'opbold', fontSize:"16", marginTop:50, marginBottom:50 },
+    text: { color: 'white', textAlign: 'center'},
+    paragraph: { color: 'white', textAlign: 'center', margin:2.5, letterSpacing:2},
+    image: { position:"absolute", width:"500", textAlign:"left" },
+    inv:{ position:"absolute", width:"500", textAlign:"center", left:"500", backgroundColor:"#2f2f2f", height:"100%", color:"white", padding:50},
+    link:{  color:"white",  textAlign:"center", margin:75, padding:0, textDecoration:"none", fontFamily:'opbold',fontSize:14},
+    paragraphSmall:{ color: 'white', textAlign: 'center', marginTop:2.5, letterSpacing:1, fontSize:8,}
+  });
 
     return(
-<Fragment>
-<Document>
-<Page>
-        {Customer.map((data,index)=>{ 
 
+     
 
-          
-return(
-  <Fragment>
-          {/* <Grid2 sx={{fontFamily:"op-reg"}} container>
-          <Grid2 p={4} className="gridLeft" xs={6}>
-          <Stack spacing={5}> */}
-            <Image
-        style={{width:"100%"}}
-        source="./invitation.jpg"
-        alt="logo"
-      />
-          {/* </Stack>
+  <Document  style={styles.body} pageMode="singlePage">
 
-        </Grid2>
-        <Grid2 className="gridRight" p={8} xs={6}>
-          <Stack spacing={16}>
+  <Page  break size={[510,1000]}  orientation='landscape'>
+<div      style={styles.image} >
+<Image
+   src={logo}
+   alt="logo"
 
-            <Stack>*/}
-            <Text style={{fontFamily:"op-reg"}}>
+ ></Image>
+ </div>
+ 
+ <div  style={styles.inv}>
+
+ <Text style={styles.text}>
             Dear Mr/Mrs/Ms
             </Text>
             <br />
-           {/* </Stack>
-            <Stack key={index} sx={{fontFamily:"op-bold"}}> */}
-            <Text style={{fontFamily:"op-bold"}}>
-              {data.name} {data.lastName}
-              </Text>
-            {/* </Stack>
-            <Stack>*/}
-            <br />
-            <Text style={{fontFamily:"op-reg"}}>
+  <Text  
+  style={styles.title}
+  key={props.name+props.index}
+  > {props.name} {props.lastName} </Text>
+    <Text style={styles.paragraph}>
 
-            We are inviting you to join our <br />
-virtual private online store<br />
+We are inviting you to join our 
+</Text>
+<Text style={styles.paragraph}>
+virtual private online store
+</Text>
+<Text style={styles.paragraph}>
 on instagram for our chosen 
-<br/>loyal customers
 </Text>
-<br />
-          { /*  </Stack>
-            <Stack> */}
-            <Text style={{fontFamily:"op-bold"}}>
-
-              <a href="https://instagram.com/limooPrivate"  style={{color:"white",textDecoration:"none", fontFamily:"op-bold"}}> for joining us click here </a>
-              </Text>
-              <br />
-           {/* </Stack>
-            <Stack sx={{fontSize:"9px", fontWeight:"100"}}> */}
-            <Text style={{fontFamily:"op-reg"}}>
-
-            Join us as we launch new products and give away discounts and gifts on pre-orders <br/>
-products will be available before Eid-Norouz
+<Text style={styles.paragraph}>
+loyal customers
 </Text>
 
-          {/*  </Stack>
-       
-          </Stack>
 
-        </Grid2>
+         
+              <Link style={styles.link} src="https://instagram.com/limooshirin"><Text style={styles.paragraph}>for joining us click here</Text></Link>
+         
+              <Text style={styles.paragraphSmall}>
+
+Join us as we launch new products and give away discounts and gifts
+</Text>
+<Text style={styles.paragraphSmall}>
+on pre-orders, products will be available before Eid-Norouz
+</Text>
+
+</div>
+      
+     </Page>
+
+      </Document>
 
 
-      </Grid2> */}
 
-</Fragment>
-)
 
-        })}
-        </Page>
-        </Document>
-    
-</Fragment>
 
     );
 
 
 };
-export default DocComp;
+export default Doc;
